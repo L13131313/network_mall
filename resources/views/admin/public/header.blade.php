@@ -13,8 +13,8 @@
             <!-- user login dropdown start-->
             <li class="dropdown text-center">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="" src="{!! session('username')->photo !!}" class="img-circle profile-img thumb-sm">
-                    <span class="username">{!! session('username')->name !!}</span> <span class="caret"></span>
+                    <img alt="" src="" class="img-circle profile-img thumb-sm">
+                    <span class="username">111</span> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003"
                     style="overflow: hidden; outline: none;">
