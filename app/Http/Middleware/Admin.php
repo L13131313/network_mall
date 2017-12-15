@@ -18,6 +18,6 @@ class Admin
         if (session()->has('username')) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('admin/login');
     }
 }

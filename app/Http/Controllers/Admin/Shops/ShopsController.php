@@ -100,7 +100,6 @@ class ShopsController extends Controller
     public function destroy($id, Request $request)
     {
         $status = $request->only('status')['status'];
-
         if ($status == 1) {
             Shops::where('id', $id)->update(['s_status' => 0]);
             return 0;

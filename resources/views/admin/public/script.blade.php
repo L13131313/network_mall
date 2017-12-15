@@ -24,7 +24,6 @@
 
 <script src="{{ asset('admin/js/jquery.app.js') }}" type="text/javascript"></script>
 
-
 <!-- Datatables-->
 <script src="{{ asset('admin/js/jquery.datatables.min.js') }}"></script>
 <script src="{{ asset('admin/js/datatables.bootstrap.js') }}"></script>
@@ -47,6 +46,7 @@
 <script src="{{ asset('admin/js/sweet-alert.init.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.validate.min.js')}}"></script>
 <script src="{{ asset('admin/js/validate/message_cn.js')}}"></script>
+
 
 {{--layer--}}
 <script src="{{ asset('layer/layer.js')}}"></script>

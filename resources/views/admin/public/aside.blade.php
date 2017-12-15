@@ -12,7 +12,7 @@
 
     <nav class="navigation">
         <ul class="list-unstyled">
-            <li class=""><a href="{{url('/')}}"><i class="zmdi zmdi-view-dashboard"></i> <span
+            <li class=""><a href="{{url('admin/index')}}"><i class="zmdi zmdi-view-dashboard"></i> <span
                             class="nav-label">主页</span></a></li>
 
             <li class="has-submenu">
@@ -23,10 +23,10 @@
                 </a>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#">个人发布</a>
-                        <a href="#">111</a>
-                        <a href="#">222</a>
-                        <a href="#">333</a>
+                        <a href="{{ url('admin/user/create') }}">添加用户</a>
+                        <a href="{{ url('admin/user') }}">管理员列表</a>
+                        <a href="#">用户列表</a>
+                        <a href="#">商家列表</a>
                     </li>
                 </ul>
             </li>

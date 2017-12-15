@@ -83,7 +83,6 @@
                 }, function(){
                     //ajax请求
                     $.post('{{ url("admin/shops/".$v->id) }}',{'status':status, '_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
-                        console.log(data);
                         if (data == 0) {
                             layer.msg('店铺已封！', {icon: 2});
                             setTimeout(function(){

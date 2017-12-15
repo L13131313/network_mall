@@ -14,7 +14,7 @@
             <li class="dropdown text-center">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="" class="img-circle profile-img thumb-sm">
-                    <span class="username">111</span> <span class="caret"></span>
+                    <span class="username">{{ session('user')['status']?'超级管理员':'管理员' }} || {{ session('user')['name'] }}</span> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003"
                     style="overflow: hidden; outline: none;">
