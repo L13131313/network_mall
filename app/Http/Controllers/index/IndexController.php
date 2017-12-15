@@ -17,102 +17,108 @@ class IndexController extends Controller
     // 前台用户父类
     public function parent()
     {
-        return view('xiangmu/parent');
+        return view('layouts/parent');
     }
 
     // 用户首页
     public function index()
     {
-        return view('xiangmu/index');
+        return view('index/index');
     }
 
     // 用户详情
     public function information()
     {
-        return view('xiangmu/information');
+        return view('index/information');
     }
 
     // 用户修改密码
     public function password()
     {
-        return view('xiangmu/password');
+        return view('index/password');
     }
 
     // 用户修改电话
     public function bindphone()
     {
-        return view('xiangmu/bindphone');
+        return view('index/bindphone');
     }
 
     // 用户修改Email
     public function email()
     {
-        return view('xiangmu/email');
+        return view('index/email');
     }
 
     // 用户安全设置页面
     public function safety()
     {
-        return view('xiangmu/safety');
+        return view('index/safety');
     }
 
     // 用户地址管理
     public function address()
     {
-        return view('xiangmu/address');
+        return view('index/address');
     }
 
     // 用户订单管理
     public function order()
     {
-        return view('xiangmu/order');
+        return view('index/order');
     }
 
     // 用户退款页面
     public function change()
     {
-        return view('xiangmu/change');
+        return view('index/change');
     }
 
     // 用户退款详情
     public function record()
     {
-        return view('xiangmu/record');
+        return view('index/record');
     }
 
     // 用户收藏页面
     public function collection()
     {
-        return view('xiangmu/collection');
+        return view('index/collection');
     }
 
     // 用户访问页面
     public function foot()
     {
-        return view('xiangmu/foot');
+        return view('index/foot');
     }
 
     // 用户评价页面
     public function comment()
     {
-        return view('xiangmu/comment');
+        return view('index/comment');
     }
 
     // 用户评价页面
     public function commentlist()
     {
-        return view('xiangmu/commentlist');
+        return view('index/commentlist');
     }
 
     // 用户消息页面
     public function news()
     {
-        return view('xiangmu/news');
+        return view('index/news');
     }
 
     // 用户物流信息
     public function logistics()
     {
-        return view('xiangmu/logistics');
+        return view('index/logistics');
+    }
+
+    // 用户物流信息
+    public function status()
+    {
+        return view('index/status');
     }
 }

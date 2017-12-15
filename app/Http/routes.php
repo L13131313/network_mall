@@ -10,40 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 项目文件
+// 前台用户模块
 Route::group(['prefix' => 'index'], function () {
 	Route::get('parent', 'index\IndexController@parent');
 	Route::get('user', 'index\IndexController@index');
@@ -62,4 +29,67 @@ Route::group(['prefix' => 'index'], function () {
 	Route::get('commentlist', 'index\IndexController@commentlist');
 	Route::get('news', 'index\IndexController@news');
 	Route::get('logistics', 'index\IndexController@logistics');
+	Route::get('status', 'index\IndexController@status');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *  后台
+ */
+// 登录
+Route::get('admin/login', 'Admin\LoginController@index');
+// 提交登录信息
+Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
+Route::post('admin/login', 'Admin\LoginController@doLogin');
+
+// 后台路由群主
+Route::group(['namespace' => 'Admin','prefix'=>'admin', 'middleware' => 'login'], function () {
+
+    // 后台首页
+    Route::resource('index', 'IndexController@index');
+    //
+    Route::resource('user', 'user\UserController');
+   // Route::get('/list', 'IndexController@list');
+    //退出登录
+    Route::get('/loginOut', 'LoginController@loginOut');
+});
+
+
+
+
+
