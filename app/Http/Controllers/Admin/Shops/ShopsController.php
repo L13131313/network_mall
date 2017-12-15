@@ -99,15 +99,14 @@ class ShopsController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $status = $request->only('status')['status'];
-        if ($status == 1) {
-            Shops::where('id', $id)->update(['s_status' => 0]);
-            return 0;
-        } else {
-            Shops::where('id', $id)->update(['s_status' => 1]);
-            return 1;
+        $status = $request->get('status');
 
+        $res = Shops::where('id', $id)->update(['s_status' => $status]);
+
+        if ($res) {
+            return response()->json(['status'=> 200 , 'message' => '操作成功']);
         }
+        return response()->json(['status'=> 202 , 'message' => '操作失败']);
     }
 
 }

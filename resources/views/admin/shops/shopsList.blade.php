@@ -78,18 +78,24 @@
         <script>
             function doSeal(id, status){
                 var statu = (status== 1) ? '封店' : '解封';
+                var stu = (status == 1) ? 0 : 1;
                 layer.confirm('确认'+ statu +'吗？', {
                     btn: ['确认','取消']
                 }, function(){
-                    //ajax请求
-                    $.post('{{ url("admin/shops/".$v->id) }}',{'status':status, '_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
-                        if (data == 0) {
-                            layer.msg('店铺已封！', {icon: 2});
+                    $.ajax({
+                        type: 'delete',
+                        url: 'shops/'+id,
+                        dataType: 'json',
+                        data: {'status':stu, '_token':'{{csrf_token()}}'},
+                        success: function (data) {
+                            let ic = data.status == 200 ? 2 :1;
+                            layer.msg(data.message, {icon: ic})
                             setTimeout(function(){
                                 location.href = location.href;
                             },1000);
-                        } else {
-                            layer.msg(  '店铺已解封！', {icon: 1});
+                        },
+                        error: function () {
+                            layer.msg('服务器错误', {icon: 1})
                             setTimeout(function(){
                                 location.href = location.href;
                             },1000);
