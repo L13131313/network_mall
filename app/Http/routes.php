@@ -32,7 +32,8 @@ Route::group(['prefix' => 'index'], function () {
 	Route::get('status', 'index\IndexController@status');
 });
 
-
+Route::get('index/login', 'index\IndexController@login');
+Route::resource('index/register', 'index\UserController');
 
 
 

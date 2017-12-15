@@ -121,4 +121,10 @@ class IndexController extends Controller
     {
         return view('index/user/status');
     }
+
+    // 登录页面
+    public function login()
+    {
+        return view('index/login/login');
+    }
 }
