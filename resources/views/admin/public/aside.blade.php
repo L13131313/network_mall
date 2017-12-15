@@ -39,7 +39,7 @@
                 </a>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#">店铺列表</a>
+                        <a href="{{ url('admin/shops') }}">店铺列表</a>
                     </li>
                 </ul>
             </li>

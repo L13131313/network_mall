@@ -81,8 +81,9 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'/*, 'middleware' => 'admin
 
     // 后台首页
     Route::resource('index', 'IndexController');
-    //
-   // Route::get('/list', 'IndexController@list');
-    //退出登录
+
+    // 店铺列表页面
+    Route::resource('shops', 'Shops\ShopsController');
+
     Route::get('/loginOut', 'LoginController@loginOut');
 });

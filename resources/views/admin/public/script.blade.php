@@ -47,3 +47,6 @@
 <script src="{{ asset('admin/js/sweet-alert.init.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.validate.min.js')}}"></script>
 <script src="{{ asset('admin/js/validate/message_cn.js')}}"></script>
+
+{{--layer--}}
+<script src="{{ asset('layer/layer.js')}}"></script>
