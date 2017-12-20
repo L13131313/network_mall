@@ -34,4 +34,5 @@ class IndexRequest extends Request
             'firstname.required' => '名字不能为空'
         ];
     }
+
 }

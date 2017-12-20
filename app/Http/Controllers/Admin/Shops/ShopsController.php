@@ -17,21 +17,15 @@ class ShopsController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Shops::orderBy('s_time','asc')
-            ->where(function($shops) use($request) {
-                $select = $request->only('select');
-                $search = $request->only('search');
-                if ($select == 0) {
-                    $shops->where('s_name', 'like', '%' . $search . '%');
-                }
+        $select = $request->get('select');
+        $search = $request->get('search');
+        $query = Shops::orderBy('s_time','asc');
+        if (!empty($search)){
+             $query->where($select,'like','%'.$search.'%');
+        }
 
-                if ($select == 1) {
-                    $shops->where('nickname','like','%'.$search.'%');
-                }
-            })
-        ->paginate(2);
-
-        return view('admin.shops.shopsList', ['data' => $data, 'request' => $request]);
+        $data = $query->paginate(1);
+        return view('admin.shops.shopsList', compact('data'));
     }
 
 
@@ -104,9 +98,9 @@ class ShopsController extends Controller
         $res = Shops::where('id', $id)->update(['s_status' => $status]);
 
         if ($res) {
-            return response()->json(['status'=> 200 , 'message' => '操作成功']);
+            return response()->json(['status'=> 200 , 'message' => '操作成功！']);
         }
-        return response()->json(['status'=> 202 , 'message' => '操作失败']);
+        return response()->json(['status'=> 202 , 'message' => '操作失败！']);
     }
 
 }

@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sunxiaodong
- * Date: 2017/11/30
- * Time: 下午3:38
- */
 
 namespace App\Tools;
 
 use App\Models\District;
+use App\Models\Shops\Cate;
 use Illuminate\Support\Facades\Cache;
 
 class AreaCache
@@ -37,5 +32,40 @@ class AreaCache
         });
         return $data;
     }
+
+    /**
+     *  商品分类
+     * @param $id 商品父ID
+     * @return mixed
+     */
+    public static function getCateId($id)
+    {
+
+        $key = config('district.cate.id').$id;
+        $data = Cache::rememberForever($key, function () use ($key,$id) {
+            $data = Cate::where('parentid', $id)->get();
+            $data && $data = $data->toJson();
+            return  json_decode($data);
+        });
+        return $data;
+    }
+
+    /**
+     *  商品分类单条查询
+     * @param $id
+     * @return mixed
+     */
+    public static function getOneId($catid)
+    {
+
+        $key = config('district.cate.catid').$catid;
+        $data = Cache::rememberForever($key, function () use ($key,$catid) {
+            $data = Cate::where('catid', $catid)->first();
+            $data && $data = $data->toJson();
+            return  json_decode($data);
+        });
+        return $data;
+    }
+
 
 }

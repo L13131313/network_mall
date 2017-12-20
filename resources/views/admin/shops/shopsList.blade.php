@@ -23,11 +23,11 @@
                                             <div class="input-group">
                                                 <div class="input-group-btn">
                                                     <select class="btn btn-default dropdown-toggle" name="select" style="height:36px;color:#333b4d;font-weight:bold;margin-top:-5px;">
-                                                        <option value="0">搜店铺</option>
-                                                        <option value="1">搜掌柜</option>
+                                                        <option value="s_name">搜店铺</option>
+                                                        <option value="nickname">搜掌柜</option>
                                                     </select>
                                                 </div>
-                                                <input type="text" class="form-control" name="search" value="{{ $request->search }}">
+                                                <input type="text" class="form-control" name="search" value="">
                                                 <div class="input-group-btn">
                                                 <input type="submit" class="btn btn-default dropdown-toggle btn-primary m-b-5" value="搜索" style="height:36px;">
                                                 </div>
@@ -68,7 +68,7 @@
                                 </tbody>
                             </table>
                             <div style="float:right;">
-                                {!! $data->appends($request->all())->render() !!}
+                                {!! $data->appends(\Request::query())->render() !!}
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         dataType: 'json',
                         data: {'status':stu, '_token':'{{csrf_token()}}'},
                         success: function (data) {
-                            let ic = data.status == 200 ? 2 :1;
+                            let ic = data.status == 200 ? 1 : 2;
                             layer.msg(data.message, {icon: ic})
                             setTimeout(function(){
                                 location.href = location.href;

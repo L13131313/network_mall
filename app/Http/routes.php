@@ -82,21 +82,25 @@ Route::post('admin/login', 'Admin\LoginController@doLogin');
 
 // 后台路由群主
 Route::group(['namespace' => 'Admin','prefix'=>'admin'/*, 'middleware' => 'admin'*/], function () {
-
     // 后台首页
     Route::resource('index', 'IndexController@index');
-
     // 店铺列表页面
     Route::resource('shops', 'Shops\ShopsController');
-
     // 用户管理
     Route::resource('user', 'user\UserController');
-
     // 退出登录
     Route::get('/loginOut', 'LoginController@loginOut');
 });
 
+// 前台卖家中心
+Route::group(['namespace' => 'index\Shops','prefix'=>'shops'/*, 'middleware' => 'shops'*/], function () {
+    Route::get('index', 'ShopsController@index');
 
+    // 前台卖家商品管理
+    // 商品选择分类页面
+    Route::resource('goods', 'GoodsController');
+    // 处理分类ajax请求
+    Route::post('goods/classification', 'GoodsController@classification');
 
-
+});
 
