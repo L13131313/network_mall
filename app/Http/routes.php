@@ -11,7 +11,7 @@
 |
 */
 // 前台用户模块
-Route::group(['prefix' => 'index', 'middleware' => 'index'], function () {
+Route::group(['prefix' => 'index'/*, 'middleware' => 'index'*/], function () {
 	// 个人中心父模板
 	Route::get('parent', 'index\IndexController@parent');
 	// 个人中心首页
@@ -92,7 +92,7 @@ Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 Route::post('admin/login', 'Admin\LoginController@doLogin');
 
 // 后台路由群主
-Route::group(['namespace' => 'Admin','prefix'=>'admin', 'middleware' => 'admin'], function () {
+Route::group(['namespace' => 'Admin','prefix'=>'admin'/*, 'middleware' => 'admin'*/], function () {
 
     // 后台首页
     Route::resource('index', 'IndexController@index');
