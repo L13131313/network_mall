@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <button class="btn btn-success" type="submit">注册</button>
-                                    <button class="btn btn-default" type="button">重置</button>
+                                   <input type="reset" class="btn btn-defoult">
                                 </div>
                             </div>
                         </form>

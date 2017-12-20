@@ -11,9 +11,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+// 验证码
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
+
+// 表单验证
 use Illuminate\Support\Facades\Validator;
+// 密码加密
 use Illuminate\Support\Facades\Crypt;
 
 

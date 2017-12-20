@@ -30,7 +30,11 @@ class UserController extends Controller
                 $username = $request->input('name');
                 //如果用户名不为空
                 if(!empty($username)) {
-                    $query->where('name','like','%'.$username.'%');
+                    // $res = User::where('name','admin')->first();
+                    // if($res)
+                    // {
+                        $query->where('name','like','%'.$username.'%');
+                    // }
                 }
             })
              ->paginate(2);

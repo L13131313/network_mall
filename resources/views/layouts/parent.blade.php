@@ -33,8 +33,12 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲，请登录</a>
-									<a href="#" target="_top">免费注册</a>
+									@if(!session('indexUser'))
+										<a href="{{ url('index/login') }}" target="_top" class="h">亲，请登录</a>
+										<a href="{{ url('index/register') }}" target="_top">免费注册</a>
+									@else
+										<a href="{{ url('index/logOut') }}" target="_top">退出登录</a>
+									@endif
 								</div>
 							</div>
 						</ul>
@@ -43,7 +47,7 @@
 								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{ url('index/user') }}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -57,7 +61,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
+								<li><img src="{{ asset('index/images/logobig.png') }}" /></li>
 							</div>
 
 							<div class="search-bar pr">

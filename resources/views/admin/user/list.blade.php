@@ -48,8 +48,8 @@
                                     <td>{{ $v->name }}</td>
                                     <td>{{ ($v->status) ? '超级管理员' : '管理员'}}</td>
                                     <td>
-                                        <a href='{{ url("admin/user/$v->id/edit") }}'>修改</a> || 
-                                        <a href="javascript:;" onclick="delUser({{$v->id}})">删除</a>    
+                                        <a href='{{ url("admin/user/$v->id/edit") }}' class="btn btn-primary m-b-5">修改</a> || 
+                                        <a href="javascript:;" onclick="delUser({{$v->id}})" class="btn btn-danger m-b-5">删除</a>    
                                     </td>
                                 </tr>
                             @endforeach
