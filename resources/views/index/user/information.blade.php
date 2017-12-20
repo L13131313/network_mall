@@ -1,5 +1,5 @@
 @extends('layouts.parent')
-@section('content')
+@section('content') 
 <div class="user-info">
 	<!--标题 -->
 	<div class="am-cf am-padding">
@@ -11,14 +11,14 @@
 	<div class="user-infoPic">
 
 		<div class="filePic">
-			<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-			<img class="am-circle am-img-thumbnail" src="../images/getAvatar.do.jpg" alt="" />
+			<input type="file" class="inputPic" id='photo_upload' allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" enctype='multipart/form-data'>
+			<img class="am-circle am-img-thumbnail" id='pic' src="{{ asset('index/images/default.jpg') }}" alt="" />
 		</div>
 
 		<p class="am-form-help">头像</p>
 
 		<div class="info-m">
-			<div><b>用户名：<i>小叮当</i></b></div>
+			<div><b>用户名：<i>{{ (session('indexUser')['nickname'])?(session('indexUser')['nickname']):(session('indexUser')['tel']) }}</i></b></div>
 			<div class="u-level">
 				<span class="rank r2">
 		             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
@@ -44,15 +44,6 @@
 
 				</div>
 			</div>
-
-			<div class="am-form-group">
-				<label for="user-name" class="am-form-label">姓名</label>
-				<div class="am-form-content">
-					<input type="text" id="user-name2" placeholder="name">
-
-				</div>
-			</div>
-
 			<div class="am-form-group">
 				<label class="am-form-label">性别</label>
 				<div class="am-form-content sex">
@@ -140,4 +131,52 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript">
+// 这里是Ajax 全局token
+// $.ajaxSetup({
+//    headers: {
+//      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             }
+//  });
+// 图片上传
+$('#pic').on('click', function(){
+    $('#photo_upload').trigger('click');
+    $('#photo_upload').on('change', function(){
+        var obj = this;
+        //用整个from表单初始化FormData
+        var formData = new FormData($('#art_form')[0]);
+        $.ajax({
+            url: '/upload',
+            type: 'post',
+            data: formData,
+            // 因为data值是FormData对象，不需要对数据做处理
+            processData: false,
+            contentType: false,
+            beforeSend:function(){
+                // 菊花转转图
+                $('#pic').attr('src', "{{ asset('index/images/load.gif') }}");
+            },
+            success: function(data){
+                if(data['ServerNo']=='200'){
+                    // 如果成功
+                    $('#pic').attr('src', '/uploads/'+data['ResultData']);
+                    $('input[name=pic]').val(data);
+                    $(obj).off('change');
+                }else{
+                    // 如果失败
+                    alert(data['ResultData']);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                var number = XMLHttpRequest.status;
+                var info = "错误号"+number+"文件上传失败!";
+                // 将菊花换成原图
+                $('#pic').attr('src', "{{ asset('index/images/file.png') }}");
+                alert(info);
+            },
+            async: true
+        });
+    });
+});
+</script>
 @endsection

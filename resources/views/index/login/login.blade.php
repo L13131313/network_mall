@@ -1,17 +1,28 @@
 @extends('layouts.loginParent')
 @section('content')
 <div class="login-box">
-	<h3 class="title">登录商城</h3>
+	@if (count($errors) > 0)
+        @foreach (($errors->all()) as $error)
+			<h3 class="title">{{ $error }}</h3>
+        @endforeach
+    @else
+    	<h3 class="title">登录商城</h3>
+        @if(session('msg'))
+        <h3 class="title">{{ session('msg') }}</h3>
+        @endif
+    @endif
+	
 		<div class="clear"></div>						
 		<div class="login-form">
-			<form action='' method='post'>
+			<form action="{{ url('index/login') }}" method='post' class='myform'>
+				{{ csrf_field() }}
 				<div class="user-name">
 					<label for="user"><i class="am-icon-user"></i></label>
-					<input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+					<input type="text" name="tel" id="user" placeholder="手机/用户名">
 				</div>
 				<div class="user-pass">
 					<label for="password"><i class="am-icon-lock"></i></label>
-					<input type="password" name="" id="password" placeholder="请输入密码">
+					<input type="password" name="pwd" id="password" placeholder="请输入密码">
 				</div>
 			  </form>
 		</div>
@@ -22,7 +33,7 @@
 				<br />
         </div>
 		<div class="am-cf">
-			<input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+			<input type="submit" name="" value="登 录" id='submit' class="am-btn am-btn-primary am-btn-sm">
 		</div>
 		<div class="partner">		
 			<h3>合作账号</h3>
@@ -33,4 +44,9 @@
 			</div>
 		</div>
 </div>
+<script>
+	$('#submit').click(function(){
+		$('.myform').submit();
+	});
+</script>
 @endsection

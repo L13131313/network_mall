@@ -11,10 +11,14 @@
 |
 */
 // 前台用户模块
-Route::group(['prefix' => 'index'], function () {
+Route::group(['prefix' => 'index', 'middleware' => 'index'], function () {
+	// 个人中心父模板
 	Route::get('parent', 'index\IndexController@parent');
+	// 个人中心首页
 	Route::get('user', 'index\IndexController@index');
+	// 用户详情
 	Route::get('information', 'index\IndexController@information');
+	// 安全设置
 	Route::get('safety', 'index\IndexController@safety');
 	Route::get('address', 'index\IndexController@address');
 	Route::get('password', 'index\IndexController@password');
@@ -30,10 +34,19 @@ Route::group(['prefix' => 'index'], function () {
 	Route::get('news', 'index\IndexController@news');
 	Route::get('logistics', 'index\IndexController@logistics');
 	Route::get('status', 'index\IndexController@status');
-});
 
-Route::get('index/login', 'index\IndexController@login');
+	// 用户退出
+});
+// 登录页面
+Route::get('index/login', 'index\LoginController@index');
+// 登录操作
+Route::post('index/login', 'index\LoginController@doLogin');
+
+// 用户注册
 Route::resource('index/register', 'index\UserController');
+// 验证码类
+Route::post('index/phone', 'index\UserController@phone');
+
 
 
 
@@ -79,7 +92,7 @@ Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 Route::post('admin/login', 'Admin\LoginController@doLogin');
 
 // 后台路由群主
-Route::group(['namespace' => 'Admin','prefix'=>'admin', 'middleware' => 'login'], function () {
+Route::group(['namespace' => 'Admin','prefix'=>'admin', 'middleware' => 'admin'], function () {
 
     // 后台首页
     Route::resource('index', 'IndexController@index');

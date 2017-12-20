@@ -69,57 +69,5 @@ function re_captcha() {
     $url = $url + "/" + Math.random();
         document.getElementById('127ddf0de5a04167a9e427d883690ff6').src = $url;
     }
-
-    // var h=/^[\u4e00-\u9fa5]{0,}$/;
-    // // var d=/^1[3|4|5|8][0-9]\d{4,8}$/;
-    // // var y=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-    // $("input").focus(function() {
-    //     $(this).prev().css("color","#008DE8");
-    // });
-    // $("[name='name']").blur(function() {
-    //     var v=$(this).val();
-    //     if (v=='') {
-    //         $("[name='name']").next().html("用户名不能为空！");
-    //         $(this).prev().css("color","#f00");
-    //     }else if(!v.match(h)){
-    //         $("[name='name']").next().html("用户名不合法！");
-    //         $("[name='name']").prev().css("color","#f00");
-    //     }else{
-    //         $(this).prev().css("color","#0EA74A");
-    //         $("[name='name']").next().html("");
-    //     } 
-    // });
-    // $("[name='pwd']").blur(function() {
-    //     var v=$(this).val();
-    //     if (v=='') {
-    //         $("[name='pwd']").next().html("密码不能为空！");
-    //         $(this).prev().css("color","#f00");
-    //     }else if(!v.match(d)){
-    //         $("[name='pwd']").next().html("密码不正确！");
-    //         $("[name='pwd']").prev().css("color","#f00");
-    //     }else{
-    //         $(this).prev().css("color","#0EA74A");
-    //         $("[name='pwd']").next().html("");
-    //     } 
-    // });
-    // $('.button').click(function(){
-    // var name=$("[name='name']").val();
-    // var pwd=$("[name='pwd']").val();
-    // if (name=="") {
-    //     $("[name='name']").next().html("用户名不能为空！");
-    //     return;
-    // }else if(!name.match(h)){
-    //     $("[name='name']").next().html("用户名不合法！");
-    //     $("[name='name']").prev().css("color","#f00");
-    //     return;
-    // }
-    // if (pwd=='') {
-    //     $("[name='pwd']").next().html("密码不能为空！");
-    //     return;
-    // }else if(!pwd.match(d)){
-    //     $("[name='pwd']").next().html("请填写正确的密码！");
-    //     $("[name='pwd']").prev().css("color","#f00");
-    //     return;
-    // }
 </script> 
 </html>
