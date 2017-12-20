@@ -22,12 +22,12 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-offset-1"">
                         <div class="col-lg-6">
-                            <div class="layui-form-item">
+                            <div class="layui-inline">
                                 <label class="layui-form-label">
-                                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                                    <input type="text" placeholder="请输入属性名" style="width:110px;height:40px;margin-left:-16px;margin-top:-10px;">
                                 </label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="phone" lay-verify="required|phone" placeholder="请输入属性值" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                         </div>

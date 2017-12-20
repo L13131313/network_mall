@@ -62,6 +62,14 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/hyperbolaa/alisms" />
+      <path value="$PROJECT_DIR$/vendor/gregwar/captcha" />
+      <path value="$PROJECT_DIR$/vendor/iscms/alisms-for-laravel" />
+      <path value="$PROJECT_DIR$/vendor/johnlui/aliyun-oss" />
+      <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/toplan/task-balancer" />
+      <path value="$PROJECT_DIR$/vendor/toplan/phpsms" />
+      <path value="$PROJECT_DIR$/vendor/toplan/laravel-sms" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
