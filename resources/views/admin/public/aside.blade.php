@@ -67,6 +67,21 @@
                     </li>
                 </ul>
             </li>
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">分类管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ url('admin/category') }}">分类列表</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/category/create') }}">添加分类</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </aside>

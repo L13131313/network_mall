@@ -1,7 +1,8 @@
 <?php
 
 
-/*
+
+/*<
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
@@ -37,6 +38,74 @@ Route::group(['prefix' => 'index'/*, 'middleware' => 'index'*/], function () {
 	Route::get('status', 'index\IndexController@status');
 
 	// 用户退出
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 // 登录页面
 Route::get('index/login', 'index\LoginController@index');
@@ -104,6 +173,10 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'/*, 'middleware' => 'admin
     Route::resource('user', 'user\UserController');
     // 退出登录
     Route::get('/loginOut', 'LoginController@loginOut');
+
+    //分类管理
+    Route::resource('category', 'category\CategoryController');
+    Route::get('category/pages/{offset}', 'category\CategoryController@dopages');
 });
 
 // 前台卖家中心
