@@ -9,7 +9,6 @@ Homestead.json
 bootstrap/cache/
 .env.*.php
 .env.php
-.env
 *.iws
 /out/
 .idea_modules/
