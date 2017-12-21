@@ -111,6 +111,7 @@ Route::group(['namespace' => 'index\Shops','prefix'=>'shops'/*, 'middleware' => 
     Route::get('index', 'ShopsController@index');
 
     // 前台卖家商品管理
+    
     // 商品选择分类页面
     Route::resource('goods', 'GoodsController');
     // 处理分类ajax请求
