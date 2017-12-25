@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
         {{--layer--}}
         <link href="{{ asset('layui/css/layui.css') }}" rel="stylesheet" type="text/css">
-        <script src="{{ asset('layer/jquery-1.8.3.min.js')}}"></script>
+        <script src="{{ asset('layer/jquery.js')}}"></script>
         <script src="{{ asset('layer/layer.js')}}"></script>
         <script src="{{ asset('layui/layui.js')}}"></script>
         <style>
@@ -38,7 +38,7 @@
                 <ul class="layui-nav layui-layout-right">
                     <li class="layui-nav-item">
                         <a href="javascript:;">
-                            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                            <img src="" class="layui-nav-img">
                             贤心
                         </a>
                         <dl class="layui-nav-child">
@@ -73,8 +73,8 @@
                             <a href="javascript:;">商品管理</a>
                             <dl class="layui-nav-child">
                                 <dd><a href="{{ url('shops/goods') }}">发布商品</a></dd>
-                                <dd><a href="javascript:;">出售中的商品</a></dd>
-                                <dd><a href="">仓库中的商品</a></dd>
+                                <dd><a href="{{ url('shops/goods/sellList') }}">出售中的商品</a></dd>
+                                <dd><a href="{{ url('shops/warehouse') }}">仓库中的商品</a></dd>
                             </dl>
                         </li>
                         <li class="layui-nav-item">

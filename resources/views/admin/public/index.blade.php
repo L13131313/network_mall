@@ -1,15 +1,15 @@
 ﻿@extends('admin.layouts.master')
-@section('title', '后台首页')
-@section('page-title', '后台首页')
+@section('title', '')
+@section('page-title', '')
 @section('styles')
 
 @stop
 
 @section('content')
 @include('admin.public.error')
-            <div class="wraper container-fluid">
+
                 <div class="page-title"> 
-                    <h3 class="title">Welcome !</h3> 
+                    <h3 class="title">Welcome</h3>
                 </div>
                 <!-- WEATHER -->
                 <div class="row">      
@@ -111,7 +111,6 @@
                     </div> <!-- end col -->
                     
                 </div> <!-- end row -->
-            </div>
 
 @stop
 

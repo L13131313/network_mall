@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
-@section('title', '')
-@section('page-title', '')
+@section('title', '分类管理')
+@section('page-title', '分类管理')
 @section('styles')
 
 @stop

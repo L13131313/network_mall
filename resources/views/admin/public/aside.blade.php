@@ -34,6 +34,19 @@
             <li class="has-submenu">
                 <a href="#">
                     <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">商品管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{url('admin/goods')}}">商品列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
                     <span class="nav-label">店铺管理</span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -43,30 +56,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="has-submenu">
-                <a href="#">
-                    <i class="zmdi ion-android-contacts"></i>
-                    <span class="nav-label">商品管理</span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#">商品列表</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="#">
-                    <i class="zmdi ion-android-contacts"></i>
-                    <span class="nav-label">投诉管理</span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#">商品列表</a>
-                    </li>
-                </ul>
-            </li>
+			
             <li class="has-submenu">
                 <a href="#">
                     <i class="zmdi ion-android-contacts"></i>
@@ -82,6 +72,49 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">订单管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ url('admin/OrderList') }}">订单列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">投诉管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{url('admin/complaint')}}">投诉列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">商品属性管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{url('admin/attribute/create')}}">添加属性名</a>
+                        <a href="{{url('admin/attribute/create/value')}}">添加属性值</a>
+                        <a href="{{url('admin/attribute/spec')}}">添加规格</a>
+                        <a href="{{url('admin/attribute')}}">属性列表</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </nav>
 </aside>

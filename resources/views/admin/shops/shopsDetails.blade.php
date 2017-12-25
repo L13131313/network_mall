@@ -19,7 +19,7 @@
                             <table id="datatable" class="table table-striped table-bordered" border="0">
                                 <tbody>
                                 <tr>
-                                    <th class="col-md-2">店铺ID</th>
+                                    <th class="col-md-2">店铺id</th>
                                     <td class="col-md-10">{{ $data['id'] }}</td>
                                 </tr>
                                 </tbody>

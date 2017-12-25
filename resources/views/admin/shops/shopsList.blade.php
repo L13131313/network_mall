@@ -39,7 +39,7 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr align="center">
-                                    <th>店铺ID</th>
+                                    <th>店铺id</th>
                                     <th>店铺名</th>
                                     <th>掌柜名</th>
                                     <th>是否营业</th>
@@ -95,7 +95,7 @@
                             },1000);
                         },
                         error: function () {
-                            layer.msg('服务器错误', {icon: 1})
+                            layer.msg('服务器错误', {icon: 2})
                             setTimeout(function(){
                                 location.href = location.href;
                             },1000);

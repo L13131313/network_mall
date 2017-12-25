@@ -41,18 +41,20 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                            @foreach($userinfo as $v)
                                 <tbody>
-                                <tr>
-                                    <td>{{ $v->id }}</td>
-                                    <td>{{ $v->name }}</td>
-                                    <td>{{ ($v->status) ? '超级管理员' : '管理员'}}</td>
-                                    <td>
-                                        <a href='{{ url("admin/user/$v->id/edit") }}' class="btn btn-primary m-b-5">修改</a> || 
-                                        <a href="javascript:;" onclick="delUser({{$v->id}})" class="btn btn-danger m-b-5">删除</a>    
-                                    </td>
-                                </tr>
-                            @endforeach
+
+                                    @forelse($userinfo as $v)
+                                        <tr>
+                                            <td>{{ $v->id }}</td>
+                                            <td>{{ $v->name }}</td>
+                                            <td>{{ ($v->status) ? '超级管理员' : '管理员'}}</td>
+                                            <td>
+                                                <a href='{{ url("admin/user/$v->id/edit") }}' class="btn btn-primary m-b-5">修改</a> ||
+                                                <a href="javascript:;" onclick="delUser({{$v->id}})" class="btn btn-danger m-b-5">删除</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                             <div class="page_list">
@@ -63,13 +65,15 @@
                 </div>
             </div>
         </div>
+    </div>
 <script>
     function delUser(id){
+
         layer.confirm('确认删除吗？', {
             btn: ['确认','取消']
         }, function(){
             //ajax请求
-            $.post('{{ url("admin/user/".$v->id) }}',{'_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
+            $.post('{{ url("admin/user") }}'+'/'+id, {'_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
                 // console.log(data);
                 if (data['status'] == 0) {
                     layer.msg('删除成功!', {icon: 6});
@@ -92,7 +96,3 @@
 @section('script')
 
 @stop
-
-
-
-                                

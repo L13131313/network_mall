@@ -30,12 +30,12 @@
                         </select>
                     </div>
 
-                    <div class="col-lg-4" class="select">
+                    <div class="col-lg-4" class="select" id="er" hidden>
                         <select name="class_two" id="class_two" lay-filter="myselect2">
                         </select>
                     </div>
-                    <div class="col-lg-4" class="select">
-                        <select name="class_three" id="class_three" lay-filter="myselect3">
+                    <div class="col-lg-4" class="select" id="san" hidden>
+                        <select name="class_three" id="class_three" lay-filter="myselect3" >
                         </select>
                     </div>
                 </div>
@@ -76,7 +76,9 @@
 
                     // 发生改变清空二级、三级分类
                     $('#class_two').empty();
+                    $('#er').attr('hidden', 'hidden');
                     $('#class_three').empty();
+                    $('#san').attr('hidden', 'hidden');
                     //发生改变禁用提交按钮
                     $('#submit').attr({
                         'class': 'layui-btn layui-btn-disabled',
@@ -91,13 +93,19 @@
                         dataType: 'json',
                         data: {'catid': catid, '_token': '{{csrf_token()}}'},
                         success: function (data) {
-                            for (var i in data) {
-                                $.each(data[i], function (index, item) {
-                                    $('#class_two').append(`<option value=${item.catid} label=${item.parentid}>${item.catname}</option>`);
-                                    // 重新渲染数据至模板
-                                    renderForm();
-
-                                });
+                            if (data.data.length > 0) {
+                                for (var i in data) {
+                                    $.each(data[i], function (index, item) {
+                                        $('#class_two').append(`<option value=${item.catid} label=${item.parentid}>${item.catname}</option>`);
+                                        // 重新渲染数据至模板
+                                        renderForm();
+                                    });
+                                }
+                                $('#er').removeAttr('hidden');
+                            } else {
+                            //发生改变启用提交按钮
+                            $('#submit').removeAttr('disabled');
+                            $('#submit').attr('class', 'layui-btn');
                             }
                         },
                         error: function () {
@@ -109,11 +117,14 @@
                     form.on('select(myselect2)', function (data) {
                         // 发生改变清空三级分类
                         $('#class_three').empty();
+                        $('#san').attr('hidden','hidden');
+                        //发生改变禁用提交按钮
+                        $('#submit').attr({
+                            'class': 'layui-btn layui-btn-disabled',
+                            'disabled': 'disabled'
+                        });
                         // 获取选择商品id
                         var catid = data.value;
-                        //发生改变启用提交按钮
-                        $('#submit').removeAttr('disabled');
-                        $('#submit').attr('class', 'layui-btn');
 
                         // 发生ajax请求
                         $.ajax({
@@ -122,14 +133,25 @@
                             dataType: 'json',
                             data: {'catid': catid, '_token': '{{csrf_token()}}'},
                             success: function (data) {
-                                for (var i in data) {
-                                    $.each(data[i], function (index, item) {
-                                        $('#class_three').append(`<option value=${item.catid} label=${item.parentid}>${item.catname}</option>`);
-                                        // 重新渲染数据至模板
-                                        renderForm();
+                                if (data.data.length > 0) {
+                                    for (var i in data) {
+                                        $.each(data[i], function (index, item) {
+                                            $('#class_three').append(`<option value=${item.catid} label=${item.parentid}>${item.catname}</option>`);
+                                            // 重新渲染数据至模板
+                                            renderForm();
 
-                                    });
+                                        });
+                                    }
+                                    $('#san').removeAttr('hidden');
                                 }
+                                var two_child = $('#class_two').find("option:selected").attr('label');
+                                var three_child = $('#class_three').find("option:selected").attr('label');
+                                if (two_child == 0 || three_child) {
+                                    //发生改变启用提交按钮
+                                    $('#submit').removeAttr('disabled');
+                                    $('#submit').attr('class', 'layui-btn');
+                                }
+
                             },
                             error: function () {
                                 alert('服务器错误，请重新选择！');

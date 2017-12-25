@@ -2,6 +2,7 @@
 
 namespace App\Models\Shops;
 
+use App\Models\Goods\Goods;
 use Illuminate\Database\Eloquent\Model;
 
 class Shops extends Model
@@ -12,17 +13,16 @@ class Shops extends Model
      * @var string
      */
     protected $table = 'shops';
-
-    // 指定是否模型应该被戳记时间
+    // 主键
+    public $primaryKey = 'id';
+    //允许批量操作的字段
+    public $guarded = [];
+    //自动维护时间字段
     public $timestamps = false;
 
-    /**
-     * 模型的日期字段保存格式。
-     *
-     * @var string
-     */
-    protected $dateFormat = 'U';
+    public function goods()
+    {
+        return $this->hasMany(Goods::class, 'sid','id');
+    }
 
-    // 可以被批量赋值的属性
-    protected $guarded= [];
 }

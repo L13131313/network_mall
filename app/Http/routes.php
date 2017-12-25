@@ -147,12 +147,6 @@ Route::post('index/phone', 'index\UserController@phone');
 
 
 
-
-
-
-
-
-
 /**
  *  后台
  */
@@ -177,18 +171,47 @@ Route::group(['namespace' => 'Admin','prefix'=>'admin'/*, 'middleware' => 'admin
     //分类管理
     Route::resource('category', 'category\CategoryController');
     Route::get('category/pages/{offset}', 'category\CategoryController@dopages');
+
+    // 订单显示页面
+    Route::resource('/OrderList', 'OrderListController');
+
+    // 商品属性
+
+    Route::post('attribute/classification', 'Attribute\AttributeController@classification');    // 处理分类ajax请求
+    Route::get('attribute/create/value', 'Attribute\AttributeController@value');                // 添加属性值
+    Route::post('attribute/create/attribute', 'Attribute\AttributeController@attribute');       // ajax请求属性名
+    Route::post('attribute/create/doAttr', 'Attribute\AttributeController@doAttr');             // 添加属性值
+    Route::post('attribute/attrvalue', 'Attribute\AttributeController@attrValue');              // ajax请求属性值
+    Route::get('attribute/spec', 'Attribute\AttributeController@spec');                         // 添加规格页面
+    Route::post('attribute/dospec', 'Attribute\AttributeController@doSpec');                    // 添加规格逻辑
+    Route::resource('attribute', 'Attribute\AttributeController');
+
 });
 
-// 前台卖家中心
+/*李天君*/
+//后台商品管理路由
+Route::resource('admin/goods', 'Admin\Goods\GoodsController');
+Route::get('admin/goods/show', 'Admin\Goods\GoodsController@show');
+//前台首页商品展示
+Route::resource('index/goods', 'Index\Goods\GoodsController');
+
+//后台投诉管理
+Route::resource('admin/complaint','Admin\Complaint\ComplaintController');
+
+
+/**
+ * 前台卖家中心
+ */
 Route::group(['namespace' => 'index\Shops','prefix'=>'shops'/*, 'middleware' => 'shops'*/], function () {
     Route::get('index', 'ShopsController@index');
 
     // 前台卖家商品管理
-    
-    // 商品选择分类页面
-    Route::resource('goods', 'GoodsController');
-    // 处理分类ajax请求
-    Route::post('goods/classification', 'GoodsController@classification');
+    Route::get('goods/sellList', 'GoodsController@sellList');                   // 出售中商品列表
+    Route::post('goods/doShelves', 'GoodsController@doShelves');                // 出售中的商品下架操作
+    Route::resource('goods', 'GoodsController');                                // 商品选择分类页面
+    Route::post('goods/classification', 'GoodsController@classification');      // 处理分类ajax请求
+    Route::post('warehouse/doShelves', 'WarehouseController@doShelves');        // 仓库中的商品上架操作
+    Route::resource('warehouse', 'WarehouseController');                        // 仓库中的商品
 
 });
 

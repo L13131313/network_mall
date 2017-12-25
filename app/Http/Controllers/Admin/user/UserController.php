@@ -23,21 +23,18 @@ class UserController extends Controller
     public function index(Request $request)
     {
         // 用户列表
-        // $user = new User();
          $userinfo = User::orderBy('id','asc')
             ->where(function($query) use($request){
                 //检测关键字
                 $username = $request->input('name');
                 //如果用户名不为空
                 if(!empty($username)) {
-                    // $res = User::where('name','admin')->first();
-                    // if($res)
-                    // {
-                        $query->where('name','like','%'.$username.'%');
-                    // }
+
+                    $query->where('name','like','%'.$username.'%');
                 }
             })
              ->paginate(2);
+
          return view('admin.user.list', ['userinfo'=>$userinfo, 'request'=>$request]);
     }
 

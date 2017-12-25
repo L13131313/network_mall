@@ -1,5 +1,5 @@
 <!-- Footer Start -->
 <footer class="footer">
-    2017.猛男商城@.com
+    商城后台管理程序
 </footer>
 <!-- Footer Ends -->
