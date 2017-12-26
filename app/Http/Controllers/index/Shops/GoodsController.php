@@ -43,9 +43,10 @@ class GoodsController extends Controller
         $res = Goods_attr::orderBy('attrSort')->where('goodsCatId', $goodsCatId)->with('attr_val')->get();
         // 获取商品规格
         $spec = Goods_specifications::orderBy('specName')->where('goodsCatId', $goodsCatId)->get();
-        session(['indexUser'=> 1]);
+        //dd($spec);
+
         // 获取登录的用户ID
-        $uid = session('indexUser');
+        $uid = session('indexUser')['id'];
 
         $nav = S_nav::orderBy('sort','asc')->where('uid',$uid)->get();
 
@@ -60,20 +61,54 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-//       $file = $request->file('tupian');
-        $file = $_FILES;
-       dd($file);
-//        $data = $request->all();
-        foreach ($file as $v) {
+        $input = $request->except('_token');
+        $messages = [
+            'g_name.required' => '标题不能为空！',
+            'color.required' => '颜色不能为空！',
+            'spec.required' => '规格不能为空！',
+            'g_price.required' => '价格不能为空！',
+            'g_discount.required' => '价格不能为空！',
+            'g_count.required' => '库存不能为空！',
+            'cover.required' => '封面图不能为空！',
+            'g_count.integer' => '库存必须为整数！',
+            'cover.integer' => '封面图必须是图片！',
+            'g_discount.integer' => '价格必须为数字！',
+            'g_price.integer' => '价格必须为数字！',
+        ];
+        $this->validate($request,[
+            'g_name'=>'required',
+            'color'=>'required',
+            'spec'=>'required',
+            'g_discount'=>'required|numeric',
+            'g_count'=>'required|integer',
+            'cover'=>'required',
+            'g_price'=>'required|numeric',
+            'cover'=>'image',
+        ], $messages);
 
-            dump($v);
+        // 处理商品主表数据
+        $goods = [];
+        $goods['g_name'] = $input['g_name'];                             // 商品标题
+        $goods['g_status'] = $input['g_status'];                         // 店铺状态
+        $goods['g_uptime'] = time();                                     // 商品发布时间
+        $goods['shelves_time'] = $goods['g_status'] == 1 ? time() : '';  // 商品上架时间
+        $goods['uid'] = session('indexUser')['id'];                  // 获取当前用户id
+        // 店铺分类
+        $goods['s_nav'] = $input['s_nav'] != 'null' ? implode(',', $input['s_nav']) : '';
+
+        // 处理封面图片
+        $g_cover = $request->file('g_cover');                       // 获取上传的封面图
+        $path = '/upload/';
+        $ext = $g_cover->getClientOriginalExtension();
+        $fileName = rand(1000,9999).date('YmdHis', time()).'.'.$ext;
+        $res = $g_cover->move(public_path().$path, $fileName);
+        if ($res) {
+            $cover = $path.$fileName;
+
         }
-//        $destinationPath = '/upload';
-//        $ext = $file->getClientOriginalExtension();
-//        $fileName = rand(1000,9999).time().'.'.$ext;
-//
-//        $file->move(public_path().$destinationPath, $fileName);
-        return 1;
+        $goods['g_cover'] = $cover;
+        dd($goods);
+
     }
 
     /**

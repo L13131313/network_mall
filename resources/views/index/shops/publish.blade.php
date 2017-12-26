@@ -9,8 +9,18 @@
     </div>
     <div class="row">
         <div class="col-lg-8 col-md-offset-2" style="border:1px solid #3e5ea2;margin-top: 25px;">
-            <form class="layui-form layui-form-pane" action="{{ url('shops/goods') }}" method="post" style="padding-top: 25px;" enctype="multipart/form-data">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form class="" action="{{ url('shops/goods') }}" method="post" style="padding-top: 25px;" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="cate_id" value="{{ $data['class_three'] }}">
                 <div class="layui-form-item">
                     <label class="layui-form-label"><span style="color:red;font-size:18px;">*</span> 商品标题</label>
                     <div class="layui-input-block">
@@ -29,44 +39,45 @@
                                         <input type="text" name="{{ $val->attrName }}" autocomplete="off" class="layui-input" style="width:212px;">
                                     @elseif ($val->attrType == 1)
                                         @foreach($val->attr_val as $v)
-                                        <input type="checkbox" name="{{ $val->attrName }}[]" lay-skin="primary">{{$v->attrVal}}
+                                            <input type="checkbox" name="{{ $val->attrName }}[]" lay-skin="primary">{{$v->attrVal}}
                                         @endforeach
                                     @else
                                         <select name="{{ $val->attrName }}" id="">
                                             @foreach($val->attr_val as $v)
-                                                <option value="">{{$v->attrVal}}</option>
+                                                <option value="{{$v->attrVal}}">{{$v->attrVal}}</option>
                                             @endforeach
                                         </select>
                                     @endif
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                 </fieldset>
                 <p>商品封面图 <span style="color:#666;font-size:12px;margin-left:20px;">商品主图大小不能超过2MB；700*700 以上图片上传后商品详情页自动提供放大镜功能！</span></p>
                 <br>
-                <div class="layui-upload-drag layui-upload-file_chaxun" id="cover" name="g_cover" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
+                <div class="layui-upload-drag layui-upload-file_chaxun" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
                     <i style="font-size:17px;">封面图</i>
+                    <input type="file" name="g_cover" id="" style="width:120px;height:120px; margin:-30px;margin-top:-90px;opacity:0;">
                 </div>
                 <p>商品详情图</p>
                 <br>
-                <div class="figure layui-upload-drag layui-upload-file_chaxun" id="figure" name="figure[]" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
+                <div class="figure layui-upload-drag layui-upload-file_chaxun" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
                     <i style="font-size:17px;">详情图</i>
+                    <input type="file" name="figure[]" multiple id="" style="width:120px;height:120px; margin:-30px;margin-top:-90px;opacity:0;">
                 </div>
-                <div class="figure layui-upload-drag layui-upload-file_chaxun" name="figure" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
+                <div class="figure layui-upload-drag layui-upload-file_chaxun" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
                     <i style="font-size:17px;">详情图</i>
+                    <input type="file" name="figure[]" multiple id="" style="width:120px;height:120px; margin:-30px;margin-top:-90px;opacity:0;">
                 </div>
-                <div class="figure layui-upload-drag layui-upload-file_chaxun" name="figure" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
+                <div class="figure layui-upload-drag layui-upload-file_chaxun" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
                     <i style="font-size:17px;">详情图</i>
+                    <input type="file" name="figure[]" multiple id="" style="width:120px;height:120px; margin:-30px;margin-top:-90px;opacity:0;">
                 </div>
-                <div class="figure layui-upload-drag layui-upload-file_chaxun" name="figure" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
+                <div class="figure layui-upload-drag layui-upload-file_chaxun" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
                     <i style="font-size:17px;">详情图</i>
-                </div>
-                <div class="figure layui-upload-drag layui-upload-file_chaxun" name="figure" style="border:1px solid #ddd;background:#f6f6f6;height:120px;width:120px;line-height:60px;">
-                    <i style="font-size:17px;">详情图</i>
+                    <input type="file" name="figure[]" multiple id="" style="width:120px;height:120px; margin:-30px;margin-top:-90px;opacity:0;">
                 </div>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                 </fieldset>
@@ -146,91 +157,103 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">店铺分类</label>
                     <div class="layui-input-block">
-                        @foreach($nav as $v)
-                            <input type="checkbox" name="s_nav[]" value="{{ $v->id }}" lay-skin="primary" title="{{ $v->nav_name }}">
-                        @endforeach
+                        @if ($nav->toArray() == [])
+                            <input type="checkbox" name="s_nav[]" checked value="null" hidden>
+                        @else
+                            @foreach($nav as $v)
+                                <input type="checkbox" name="s_nav[]" value="{{ $v->id }}">{{ $v->nav_name }}
+                            @endforeach
+                        @endif
                     </div>
                 </div>
-                <div class="layui-form-item" pane="">
-                    <label class="layui-form-label">上架时间</label>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否上架</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="g_status" value="1" title="立刻上架" checked="">
-                        <input type="radio" name="g_status" value="0" title="放入仓库">
+                        <input type="radio" name="g_status" value="1" title="立刻上架" checked="">立刻上架
+                        <input type="radio" name="g_status" value="0" title="放入仓库">放入仓库
                     </div>
                 </div>
-                    {{--<input type="file" name="tupian" multiple id="">--}}
-                <input name="tupian[]" type="file" multiple="multiple" />
                 <div class="layui-form-item" style="text-align:center;">
                     <button class="layui-btn" id="submit" lay-submit="" lay-filter="demo2">跳转式提交</button>
                 </div>
             </form>
         </div>
     </div>
-
     <script>
+//        layui.use('form', function(){
+//           // var form = layui.form;
+//
+//
+//        });
+        {{--layui.use(['form', 'layedit', 'laydate'], function(){--}}
+            {{--var form = layui.form--}}
+{{--//                ,layer = layui.layer--}}
+                {{--,layedit = layui.layedit--}}
+                {{--,laydate = layui.laydate;--}}
 
-        layui.use(['form', 'layedit', 'laydate'], function(){
-            var form = layui.form
-                ,layer = layui.layer
-                ,layedit = layui.layedit
-                ,laydate = layui.laydate;
 
-            //监听提交
-            form.on('submit(demo1)', function(data){
-                layer.alert(JSON.stringify(data.field), {
-                    title: '最终的提交信息'
-                })
-                return false;
-            });
+            {{--//监听提交--}}
+            {{--form.on('submit(formDemo)', function(data){--}}
+                {{--layer.msg(JSON.stringify(data.field));--}}
+                {{--return false;--}}
+            {{--});--}}
 
-            layui.use('upload', function(){
-                var $ = layui.jquery
-                    ,upload = layui.upload;
+            {{--layui.use('upload', function(){--}}
+                {{--var $ = layui.jquery--}}
+                    {{--,upload = layui.upload;--}}
 
-                upload.render({
-                    elem: '#figure'
-                    ,url: '/shops/goods'
-                    ,data: {'_token':'{{ csrf_field() }}'}
-                    ,method: 'post'
-                    ,auto: false
-                    ,bindAction: '#submit'
-                    ,multiple: true
-                    ,done: function(res){
-                        console.log(res)
-                    }
-                });
+                {{--upload.render({--}}
+                    {{--elem: '.figure'--}}
+                    {{--,url: '/shops/goods'--}}
+                    {{--,data: {'_token':'{{csrf_token()}}'}--}}
+                    {{--,method: 'post'--}}
+                    {{--,field: 'figure'--}}
+                    {{--,multiple: true--}}
+                    {{--,done: function(res){--}}
+                        {{--console.log(res)--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--});--}}
 
-                upload.render({
-                    elem: '#cover'
-                    ,url: '/shops/goods'
-                    ,data: {'_token':'{{ csrf_field() }}'}
-                    ,method: 'post'
-                    ,auto: false
-                    ,bindAction: '#submit'
-                    ,done: function(res){
-                        console.log(res)
-                    }
-                });
-            });
+            {{--layui.use('upload', function(){--}}
+                {{--var $ = layui.jquery--}}
+                    {{--,upload = layui.upload;--}}
+
+
+                {{--//拖拽上传--}}
+                {{--upload.render({--}}
+                    {{--elem: '#cover'--}}
+                    {{--,url: '/shops/goods'--}}
+                    {{--,data: {'_token':'{{csrf_token()}}'}--}}
+                    {{--,method: 'post'--}}
+                    {{--,field: 'cover'--}}
+                    {{--,auto: false--}}
+                    {{--,bindAction: '#submit'--}}
+                    {{--,size: 2048--}}
+
+                {{--});--}}
+
+
+            {{--});--}}
+        {{--});--}}
+
+
+        // 隐藏显示颜色
+        $(".doColor").focus(function() {
+            $('#isColor').removeAttr('hidden');
+        }).click(function() {
+            $('#isColor').removeAttr('hidden');
         });
 
-
-    // 隐藏显示颜色
-    $(".doColor").focus(function() {
-        $('#isColor').removeAttr('hidden');
-    }).click(function() {
-        $('#isColor').removeAttr('hidden');
-    });
-
-    function doYes() {
-        $('.doColor').val('');
-        var str = '';
-        $('input[name="color[]"]:checked').each(function(){
-            str += $(this).val()+" ";
+        function doYes() {
+            $('.doColor').val('');
+            var str = '';
+            $('input[name="color[]"]:checked').each(function(){
+                str += $(this).val()+" ";
                 $('.doColor').val(str);
-        $('#isColor').attr('hidden', 'hidden');
-        })
-    }
+                $('#isColor').attr('hidden', 'hidden');
+            })
+        }
 
         $("#isColor").hover(function (){
             $(this).removeAttr('hidden');
