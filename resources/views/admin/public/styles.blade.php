@@ -2,7 +2,6 @@
 <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
 
-
 <!--Animation css-->
 <link href="/admin/css/animate.css" rel="stylesheet">
 

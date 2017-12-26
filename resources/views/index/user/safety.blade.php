@@ -11,7 +11,7 @@
 	<div class="user-infoPic">
 
 		<div class="filePic">
-			<img class="am-circle am-img-thumbnail" src="../images/getAvatar.do.jpg" alt="" />
+			<img class="am-circle am-img-thumbnail" src="{{ (session('indexUser')['pic'])?(session('indexUser')['pic']):asset('index/uploads/default.jpg') }}" alt="" />
 		</div>
 
 		<p class="am-form-help">头像</p>
@@ -50,22 +50,10 @@
 				<i class="i-safety-iphone"></i>
 				<div class="m-left">
 					<div class="fore1">手机验证</div>
-					<div class="fore2"><small>您验证的手机：186XXXXXXXX 若已丢失或停用，请立即更换</small></div>
+					<div class="fore2"><small>您验证的手机：{{ $str = substr_replace(session('indexUser')['tel'],'****',3,6) }} 若已丢失或停用，请立即更换</small></div>
 				</div>
 				<div class="fore3">
 					<a href="{{ url('index/bindphone') }}">
-						<div class="am-btn am-btn-secondary">换绑</div>
-					</a>
-				</div>
-			</li>
-			<li>
-				<i class="i-safety-mail"></i>
-				<div class="m-left">
-					<div class="fore1">邮箱验证</div>
-					<div class="fore2"><small>您验证的邮箱：5831XXX@qq.com 可用于快速找回登录密码</small></div>
-				</div>
-				<div class="fore3">
-					<a href="{{ url('index/email') }}">
 						<div class="am-btn am-btn-secondary">换绑</div>
 					</a>
 				</div>

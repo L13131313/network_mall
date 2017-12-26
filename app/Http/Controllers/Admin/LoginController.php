@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 // use App\Http\Middleware\Admin;
 use App\Model\admin\user\User;
 
@@ -18,6 +19,7 @@ use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Support\Facades\Validator;
 // 密码加密
 use Illuminate\Support\Facades\Crypt;
+
 
 class LoginController extends Controller
 {
@@ -64,6 +66,7 @@ class LoginController extends Controller
      */
     public function doLogin(Request $request)
     {
+
        // 1.获取用户提交的数据
           $input = $request->except('_token');
          // dd($input);

@@ -53,10 +53,6 @@
 	</div>
 </div>
 <script>
-	// $(function() {
-	// 	$('#doc-my-tabs').tabs();
-	// })
-
 	function sendPhone()
 	{
 		$.post("{{ url('index/phone') }}",{'phone':$('#phone').val(), '_token':'{{csrf_token()}}'}, function(data){

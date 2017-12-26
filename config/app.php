@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'PRC',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -144,7 +144,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        iscms\Alisms\AlidayuServiceProvider::class,
     ],
 
     /*

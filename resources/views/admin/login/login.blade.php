@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php ?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -51,7 +51,7 @@
                             <img src="{{ URL('/code/captcha/1') }}" id="127ddf0de5a04167a9e427d883690ff6">
                         </a>
                     </div>
-                </div>                    
+                </div>
                 <div class="form-group text-right">
                     <div class="col-xs-12">
                         <button class="btn btn-success w-md" type="submit">登录</button>
@@ -69,5 +69,7 @@ function re_captcha() {
     $url = $url + "/" + Math.random();
         document.getElementById('127ddf0de5a04167a9e427d883690ff6').src = $url;
     }
-</script> 
+
+</script>
+
 </html>

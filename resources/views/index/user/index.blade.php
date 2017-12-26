@@ -9,7 +9,7 @@
 			<div class="m-userinfo">
 				<div class="m-baseinfo">
 					<a href="information.html">
-						<img src="../images/getAvatar.do.jpg">
+						<img src="{{ (session('indexUser')['pic'])?(session('indexUser')['pic']):asset('index/uploads/default.jpg') }}">
 					</a>
 					<em class="s-name">{{ (session('indexUser')['nickname'])?(session('indexUser')['nickname']):(session('indexUser')['tel']) }}<span class="vip1"></em>
 					<div class="s-prestige am-btn am-round">
