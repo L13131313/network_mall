@@ -12,8 +12,10 @@ use App\Model\index\user;
 
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
+
 // 表单验证
 use Illuminate\Support\Facades\Validator;
+
 // 密码加密
 use Illuminate\Support\Facades\Crypt;
 class LoginController extends Controller
@@ -72,5 +74,11 @@ class LoginController extends Controller
         // dd(session('indexUser'))    ;
 //        7 登录成功 就跳转到前台首页，失败就跳转回登录页
         return redirect('index/user');
+    }
+
+    public function logOut(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('index/login');
     }
 }

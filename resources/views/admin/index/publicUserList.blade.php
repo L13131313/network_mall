@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title', '用户列表')
-@section('page-title', '管理员列表')
+@section('page-title', '用户列表')
 @section('styles')
 
 @stop
@@ -14,7 +14,7 @@
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-effect-ripple btn-primary"><i class="fa fa-search"></i></button>
                         </span>
-                        <input type="text" id="example-input1-group2" name="name" class="form-control" placeholder="Search">
+                        <input type="text" id="example-input1-group2" name="tel" class="form-control" placeholder="Search">
                 </div>
             </form>
         </div>
@@ -35,26 +35,23 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>管理员ID</th>
-                                    <th>名称</th>
-                                    <th>权限</th>
+                                    <th>用户ID</th>
+                                    <th>电话</th>
+                                    <th>状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
+                            @foreach($userinfo as $v)
                                 <tbody>
-
-                                    @forelse($userinfo as $v)
-                                        <tr>
-                                            <td>{{ $v->id }}</td>
-                                            <td>{{ $v->name }}</td>
-                                            <td>{{ ($v->status) ? '超级管理员' : '管理员'}}</td>
-                                            <td>
-                                                <a href='{{ url("admin/user/$v->id/edit") }}' class="btn btn-primary m-b-5">修改</a> ||
-                                                <a href="javascript:;" onclick="delUser({{$v->id}})" class="btn btn-danger m-b-5">删除</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
+                                <tr>
+                                    <td>{{ $v->id }}</td>
+                                    <td>{{ $v->tel }}</td>
+                                    <td>{{ ($v->open) ? '关闭' : '开启'}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="delUser({{$v->id}})" class="btn btn-danger m-b-5">违规封号</a>    
+                                    </td>
+                                </tr>
+                            @endforeach
                                 </tbody>
                             </table>
                             <div class="page_list">
@@ -65,10 +62,8 @@
                 </div>
             </div>
         </div>
-    </div>
 <script>
     function delUser(id){
-
         layer.confirm('确认删除吗？', {
             btn: ['确认','取消']
         }, function(){
@@ -96,3 +91,7 @@
 @section('script')
 
 @stop
+
+
+
+                                

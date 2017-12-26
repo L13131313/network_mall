@@ -29,7 +29,6 @@
                             @endforeach
                         </select>
                     </div>
-
                     <div class="col-lg-4" class="select" id="er" hidden>
                         <select name="class_two" id="class_two" lay-filter="myselect2">
                         </select>
@@ -151,7 +150,6 @@
                                     $('#submit').removeAttr('disabled');
                                     $('#submit').attr('class', 'layui-btn');
                                 }
-
                             },
                             error: function () {
                                 alert('服务器错误，请重新选择！');

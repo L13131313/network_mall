@@ -25,8 +25,8 @@
                     <li>
                         <a href="{{ url('admin/user/create') }}">添加用户</a>
                         <a href="{{ url('admin/user') }}">管理员列表</a>
-                        <a href="#">用户列表</a>
-                        <a href="#">商家列表</a>
+                        <a href="{{ url('admin/publicUserList') }}">用户列表</a>
+                        <a href="{{ url('admin/publicList') }}">商家列表</a>
                     </li>
                 </ul>
             </li>

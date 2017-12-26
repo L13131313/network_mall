@@ -55,13 +55,13 @@ class UserController extends Controller
         $exists = Redis::exists($phone);
         // return $exists;
         if($exists) {
-            return back()->with('msg', '不能重复获取验证码，请60秒后重试！');
+            return '不能重复获取验证码，请60秒后重试！';
         }   else {
             // return 11111;
             $res = DB::table('user')->where('tel',$phone)->first();
             // return $res;
             if($res) {
-                return back()->with('msg', '该用户已被注册!');
+                return '该用户已被注册!';
             }   else {
                 Redis::setex('phone', 60, $phone);        
             }
@@ -108,11 +108,11 @@ class UserController extends Controller
              die;
          }
          if($result->statusCode!=0) {
-             echo "error code :" . $result->statusCode . "<br>";
-             echo "error msg :" . $result->statusMsg . "<br>";
+             echo "error code :" . $result->statusCode;
+             echo "error msg :" . $result->statusMsg;
              //TODO 添加错误处理逻辑
          }else{
-             echo "验证码已发送!<br/>";
+             echo "验证码已发送!";
              // 获取返回信息
              $smsmessage = $result->TemplateSMS;
              // echo "dateCreated:".$smsmessage->dateCreated."<br/>";

@@ -21,4 +21,5 @@ class Cate extends Model
 
     //自动维护时间字段
     public $timestamps = false;
+
 }

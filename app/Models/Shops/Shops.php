@@ -2,7 +2,9 @@
 
 namespace App\Models\Shops;
 
+
 use App\Models\Goods\Goods;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Shops extends Model
@@ -13,6 +15,7 @@ class Shops extends Model
      * @var string
      */
     protected $table = 'shops';
+
     // 主键
     public $primaryKey = 'id';
     //允许批量操作的字段

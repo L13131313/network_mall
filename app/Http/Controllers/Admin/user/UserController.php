@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin\user;
 
+//后台用户
 use App\Model\admin\user\User;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -30,11 +32,14 @@ class UserController extends Controller
                 //如果用户名不为空
                 if(!empty($username)) {
 
-                    $query->where('name','like','%'.$username.'%');
+                    $res = User::where('name','admin')->first();
+                    if($res)
+                    {
+                        $query->where('name','like','%'.$username.'%');
+                    }
                 }
             })
              ->paginate(2);
-
          return view('admin.user.list', ['userinfo'=>$userinfo, 'request'=>$request]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\index\Shops;
 
+
 use App\Models\Goods\Goods;
 use App\Models\Goods\Goods_attr;
 use App\Models\goods\Goods_specifications;
@@ -10,10 +11,12 @@ use App\Models\Shops\S_nav;
 use App\Models\Shops\Shops;
 use App\Tools\AreaCache;
 use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 
@@ -27,6 +30,7 @@ class GoodsController extends Controller
     public function index()
     {
         Cache::flush();
+
         return view('index.shops.release');
     }
 
@@ -38,6 +42,7 @@ class GoodsController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
+
         $goodsCatId = $data['class_three'];
         // 获取商品属性
         $res = Goods_attr::orderBy('attrSort')->where('goodsCatId', $goodsCatId)->with('attr_val')->get();
@@ -61,6 +66,7 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->except('_token');
         $messages = [
             'g_name.required' => '标题不能为空！',
@@ -165,6 +171,7 @@ class GoodsController extends Controller
     {
         $catid = $request->get('catid');
         $data = AreaCache::getCateId($catid);
+
         //dd($data);
         return response()->json(['data' => $data]);
     }
