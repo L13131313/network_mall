@@ -49,4 +49,4 @@
 
 
 {{--layer--}}
-<script src="{{ asset('layer/layer.js')}}"></script>
+<script src="{{ asset('admin/js/layer/layer.js')}}"></script>

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\index\Shops;
 
 use App\Models\Goods\Goods;
+use App\Models\Goods\Goods_attr;
+use App\Models\Goods\Goods_details;
+use App\Models\Goods\Goods_spec;
+use App\Models\goods\Goods_specifications;
+use App\Models\Shops\S_nav;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class WarehouseController extends Controller
 {
@@ -29,8 +35,12 @@ class WarehouseController extends Controller
 
         // 获取搜索分页
         $data = $query->where('uid', $id)->where('g_status', 0)->paginate(2);
-
-        return view('index.shops.warehouse.list', compact('data'));
+        $gid = Goods::lists('id');
+        $spec = [];
+        foreach ($gid as $v) {
+            $spec[] = Goods_spec::where('gid', $v)->first();
+        }
+        return view('index.shops.warehouse.list', compact('data', 'spec'));
     }
 
     /**
@@ -73,7 +83,21 @@ class WarehouseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Goods::where('id', $id)->with('goods_spec')->with('goods_details')->get();
+        $goodsCatId = $data['0']->cate_id;
+        // 获取商品属性
+        $res = Goods_attr::orderBy('attrSort')->where('goodsCatId', $goodsCatId)->with('attr_val')->get();
+        // 获取商品规格
+        $spec = Goods_specifications::orderBy('specName')->where('goodsCatId', $goodsCatId)->get();
+
+        // 获取登录的用户ID
+        $uid = session('indexUser')['id'];
+
+        // 获取店铺分类
+        $nav = S_nav::orderBy('sort','asc')->where('uid',$uid)->get();
+
+
+        return view('index.shops.warehouse.edit', compact('data', 'spec', 'res', 'nav'));
     }
 
     /**
@@ -96,9 +120,28 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        $res = Goods::where('id', $id)->delete();
+        $res = DB::transaction(function () use($id) {
 
-        if ($res) {
+            // 删除封面图
+            $g_cover = Goods::where('id', $id)->lists('g_cover');
+            unlink($_SERVER['DOCUMENT_ROOT'].$g_cover['0']);
+            Goods::where('id', $id)->delete();
+
+            // 删除商品规格
+            Goods_spec::where('gid', $id)->delete();
+
+            // 删除详情图
+            $photoAll = Goods_details::where('gid', $id)->lists('g_typepic');
+            $g_typepic = unserialize($photoAll['0']);
+
+            foreach ($g_typepic as $v) {
+                unlink($_SERVER['DOCUMENT_ROOT'].$v);
+            }
+            Goods_details::where('gid', $id)->delete();
+
+        });
+
+        if ($res == null) {
             return response()->json(['status'=> 200 , 'message' => '删除成功！']);
         }
 

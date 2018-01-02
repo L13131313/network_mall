@@ -14,4 +14,12 @@ class Goods_specifications extends Model
     public $guarded = [];
     //自动维护时间字段
     public $timestamps = false;
+
+    /**
+     * 关联属性值表
+     */
+    public function cate()
+    {
+        return $this->belongsTo('App\Models\Shops\Cate', 'goodsCatId', 'catid');
+    }
 }

@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label for="firstname" class="control-label col-lg-2">添加类型 <span style="color:red;">*</span></label>
+                                        <label for="firstname" class="control-label col-lg-2">添加类型</label>
                                         <div class="col-lg-10">
                                             <input type="radio" name="attrType" value="0">输入框
                                             <input type="radio" name="attrType" value="1">多选框
@@ -132,7 +132,7 @@
                     }
                     var two_child = $('#class_two').find("option:selected").attr('child');
                     var three_child = $('#class_three').find("option:selected").attr('child');
-                    if (two_child == 0 || three_child) {
+                    if (two_child == 0 || three_child == 0) {
                         $('#submit').removeAttr('disabled');
                     }
                 },

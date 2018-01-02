@@ -1,0 +1,139 @@
+@extends('index.shops.base')
+    @section('content')
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li style="font-size: 18px;">选择您要发布的商品</li>
+            </ul>
+        </div>
+
+        @include('admin.public.error')
+        <form class="layui-form" action="{{ url('shops/goods/create') }}" style="padding-top: 25px;">
+
+            <div class="row" style="padding-top: 45px;">
+                <div class="col-lg-8 col-md-offset-2">
+                    <div class="col-lg-4" class="select">
+                        <select name="class_one" id="class_one" lay-filter="myselect">
+                            @foreach(\App\Tools\AreaCache::getCateId(0) as $v)
+                                <option value="{{ $v->catid }}">{{ $v->catname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-4" class="select" id="er">
+                        <select name="class_two" id="class_two" lay-filter="myselect2">
+                        </select>
+                    </div>
+                    <div class="col-lg-4" class="select" id="san">
+                        <select name="class_three" id="class_three" lay-filter="myselect3" >
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-offset-4">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input id="submit" type="submit" disabled class="layui-btn layui-btn-disabled" lay-submit lay-filter="formDemo" value="马上发布">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            function renderForm(){
+                layui.use('form', function(){
+                    var form = layui.form;
+                    form.render();
+                });
+            }
+
+            // layer表单监听
+            layui.use(['form', 'layedit', 'laydate'], function() {
+                var form = layui.form;
+                //监听提交
+                form.on('submit(demo1)', function (data) {
+                    layer.alert(JSON.stringify(data.field), {
+                        title: '最终的提交信息'
+                    });
+                    return false;
+                });
+
+                form.on('select(myselect)', function (data) {
+                    // 发生改变清空二级、三级分类
+                    $('#class_two').empty();
+                    $('#class_two').next().find('dl').empty();
+                    $('#class_two').next().find('div').find('input').val('');
+                    $('#class_three').empty();
+                    $('#class_three').next().find('dl').empty();
+                    $('#class_three').next().find('div').find('input').val('');
+                    //发生改变禁用提交按钮
+                    $('#submit').attr({
+                        'class': 'layui-btn layui-btn-disabled',
+                        'disabled': 'disabled'
+                    });
+                    var catid = data.value;
+                        $.ajax({
+                            type: 'post',
+                            url: 'goods/classification',
+                            dataType: 'json',
+                            data: {'catid': catid, '_token': '{{csrf_token()}}'},
+                            success: function (data) {
+                                if (data.data.length > 0) {
+                                    for (var i in data) {
+                                        $.each(data[i], function (index, item) {
+                                            $('#class_two').append(`<option value=${item.catid} child=${item.child}>${item.catname}</option>`);
+                                            // 重新渲染数据至模板
+                                            renderForm();
+                                        });
+                                    }
+                                }
+                            },
+                            error: function () {
+                                alert('服务器错误，请重新选择！');
+                            }
+                        });
+                });
+
+                form.on('select(myselect2)', function (data) {
+                    // 发生改变清空三级分类
+                    $('#class_three').empty();
+                    $('#class_three').next().find('dl').empty();
+                    $('#class_three').next().find('div').find('input').val('');
+                    //发生改变禁用提交按钮
+                    $('#submit').attr({
+                        'class': 'layui-btn layui-btn-disabled',
+                        'disabled': 'disabled'
+                    });
+                    var catid = data.value;
+                    $.ajax({
+                        type: 'post',
+                        url: 'goods/classification',
+                        dataType: 'json',
+                        data: {'catid': catid, '_token': '{{csrf_token()}}'},
+                        success: function (data) {
+                            if (data.data.length > 0) {
+                                for (var i in data) {
+                                    $.each(data[i], function (index, item) {
+                                        $('#class_three').append(`<option value=${item.catid} child=${item.child}>${item.catname}</option>`);
+                                        // 重新渲染数据至模板
+                                        renderForm();
+                                    });
+                                }
+                            }
+                            var two_child = $('#class_two').find("option:selected").attr('child');
+                            var three_child = $('#class_three').find("option:selected").attr('child');
+                            if (two_child == 0 || three_child == 0) {
+                                //发生改变启用提交按钮
+                                $('#submit').removeAttr('disabled');
+                                $('#submit').attr('class', 'layui-btn');
+                            }
+                        },
+                        error: function () {
+                            alert('服务器错误，请重新选择！');
+                        }
+                    });
+                });
+            });
+        </script>
+    @endsection

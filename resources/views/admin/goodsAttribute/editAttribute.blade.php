@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label for="firstname" class="control-label col-lg-2">添加类型 <span style="color:red;">*</span></label>
+                                        <label for="firstname" class="control-label col-lg-2">添加类型</label>
                                         <div class="col-lg-10">
                                             <input type="radio" name="attrType" value="0" @if ($data->attrType == 0) checked @endif>输入框
                                             <input type="radio" name="attrType" value="1" @if ($data->attrType == 1) checked @endif>多选框

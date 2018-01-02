@@ -109,8 +109,21 @@
                     <li>
                         <a href="{{url('admin/attribute/create')}}">添加属性名</a>
                         <a href="{{url('admin/attribute/create/value')}}">添加属性值</a>
-                        <a href="{{url('admin/attribute/spec')}}">添加规格</a>
                         <a href="{{url('admin/attribute')}}">属性列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="zmdi ion-android-contacts"></i>
+                    <span class="nav-label">商品规格管理</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{url('admin/spec/create')}}">添加规格</a>
+                        <a href="{{url('admin/spec')}}">规格列表</a>
                     </li>
                 </ul>
             </li>

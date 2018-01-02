@@ -5,7 +5,7 @@
     </fieldset>
     <form action="{{ url('shops/warehouse') }}">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <div class="panel-body">
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" value="">
@@ -20,14 +20,14 @@
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="200">
-                <col>
+                <col width="60">
+                <col width="250">
+                <col width="100">
+                <col width="80">
+                <col width="80">
+                <col width="80">
+                <col width="180">
+                <col width="220">
             </colgroup>
             <thead>
             <tr>
@@ -47,15 +47,19 @@
                     <td>{{ $v->id }}</td>
                     <td>{{ $v->g_name }}</td>
                     <td><img src="{{ asset($v->g_cover) }}" width="50" height="50"></td>
-                    <td>{{ $v->g_price }}</td>
-                    <td>{{ $v->g_discount }}</td>
-                    <td>{{ $v->g_count }}</td>
+                    @foreach($spec as $n)
+                        @if($n['gid'] == $v->id)
+                            <td>{{ $n['g_price'] }}</td>
+                            <td>{{ $n['g_discount'] }}</td>
+                            <td>{{ $n['g_count'] }}</td>
+                        @endif
+                    @endforeach
                     <td>
                         {{ \Carbon\Carbon::createFromTimestamp($v->g_uptime)->toDateTimeString() }}
                     </td>
                     <td>
                         <button class="layui-btn layui-btn-red" onclick="doShelves('{{ $v->id }}')">上架</button>
-                        <button class="layui-btn layui-btn-normal" onclick="doEdit('{{ $v->id }}')">修改</button>
+                        {{--<a href='{{ url("shops/warehouse/$v->id/edit") }}' class="layui-btn layui-btn-normal">修改</a>--}}
                         <button class="layui-btn layui-btn-danger" onclick="doDel('{{ $v->id }}')">删除</button>
                     </td>
                 </tr>

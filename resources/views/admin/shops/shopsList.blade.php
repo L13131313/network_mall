@@ -43,8 +43,6 @@
                                     <th>店铺名</th>
                                     <th>掌柜名</th>
                                     <th>是否营业</th>
-                                    <th>店铺收藏数</th>
-                                    <th>地址</th>
                                     <th>开店时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -56,11 +54,10 @@
                                         <td>{{ $v->s_name }}</td>
                                         <td>{{ $v->nickname }}</td>
                                         <td>{{ $v->s_status == 1 ? '正在营业' : '已打烊' }}</td>
-                                        <td>{{ $v->s_collect }}</td>
-                                        <td>{{ $v->s_addr }}</td>
                                         <td>{{ date('Y-m-d H:i:s', $v->s_time) }}</td>
                                         <td>
-                                            <a href="{{ url('admin/shops/'.$v->id) }}" class="btn btn-primary m-b-5">查看详情</a>
+                                            {{--<a href="{{ url('admin/shops/'.$v->id) }}" class="btn btn-primary m-b-5">查看详情</a>--}}
+                                            <a href="javascript:;" onclick="doDetails({{ $v->id }})" class="btn btn-primary m-b-5">查看详情</a>
                                             <a href="javascript:;" onclick="doSeal({{$v->id }}, {{ $v->s_status }})" class="btn btn-danger m-b-5">{{ $v->s_status == 1 ? '封店' : '解封' }}</a>
                                         </td>
                                     </tr>
@@ -76,6 +73,14 @@
             </div>
         </div>
         <script>
+            function doDetails(id) {
+                layer.open({
+                    type: 2,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['500px', '700px'], //宽高
+                    content: 'shops/'+id
+                });
+            }
             function doSeal(id, status){
                 var statu = (status== 1) ? '封店' : '解封';
                 var stu = (status == 1) ? 0 : 1;

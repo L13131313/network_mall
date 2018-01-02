@@ -15,4 +15,19 @@ class Goods extends Model
     //自动维护时间字段
     public $timestamps = false;
 
+    /**
+     * 关联商品规格表
+     */
+    public function goods_spec()
+    {
+        return $this->hasMany('App\Models\Goods\Goods_spec', 'gid', 'id');
+    }
+
+    /**
+     * 关联商品详情表
+     */
+    public function goods_details()
+    {
+        return $this->hasMany('App\Models\Goods\Goods_details', 'gid', 'id');
+    }
 }

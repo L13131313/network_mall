@@ -24,7 +24,7 @@ class ShopsController extends Controller
              $query->where($select,'like','%'.$search.'%');
         }
 
-        $data = $query->paginate(1);
+        $data = $query->paginate(2);
         return view('admin.shops.shopsList', compact('data'));
     }
 

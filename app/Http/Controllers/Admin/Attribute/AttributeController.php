@@ -217,37 +217,4 @@ class AttributeController extends Controller
 
         return response()->json(['data' => $data]);
     }
-
-    /**
-     * 添加规格页面
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function spec()
-    {
-        return view('admin.goodsAttribute.spec');
-    }
-
-    /**
-     *  添加规格逻辑
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function doSpec(Request $request)
-    {
-        $messages = [
-            'specName.required' => '规格不能为空！',
-            'goodsCatId.required' => '分类不能为空！',
-        ];
-        $this->validate($request,[
-            'specName'=>'required',
-            'goodsCatId'=>'required',
-        ], $messages);
-        $data = $request->except('_token');
-
-        $res = Goods_specifications::insert($data);
-        if ($res) {
-            return redirect('admin/attribute')->with('message', '添加成功！');
-        }
-        return back()->with('message', '添加失败！');
-    }
 }

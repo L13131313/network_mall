@@ -12,7 +12,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class=" form">
-                        <form class="cmxform form-horizontal tasi-form" id="signupForm" method="post" action="{{ url('admin/attribute/dospec') }}" novalidate="novalidate">
+                        <form class="cmxform form-horizontal tasi-form" id="signupForm" method="post" action="{{ url('admin/spec') }}" novalidate="novalidate">
                             {{ csrf_field() }}
                             <b style="font-size:18px;color:#d62728;">请选择分类</b>
                             <div class="row" style="margin-top:15px;">
@@ -78,7 +78,7 @@
             if (catid != '---请选择---') {
                 $.ajax({
                     type: 'post',
-                    url: 'classification',
+                    url: '{{ url('admin/attribute/classification') }}',
                     dataType: 'json',
                     data: {'catid': catid, '_token': '{{csrf_token()}}'},
                     success: function (data) {
@@ -105,7 +105,7 @@
             var catid = $(this).val();
             $.ajax({
                 type: 'post',
-                url: 'classification',
+                url: '{{ url('admin/attribute/classification') }}',
                 dataType: 'json',
                 data: {'catid': catid, '_token': '{{csrf_token()}}'},
                 success: function (data) {
