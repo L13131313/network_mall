@@ -69,7 +69,7 @@
             btn: ['确认','取消']
         }, function(){
             //ajax请求
-            $.post('{{ url("admin/user") }}'.id,{'_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
+            $.post('{{ url("admin/user") }}'+'/'+id,{'_token':'{{csrf_token()}}', '_method':'delete'}, function(data) {
                 // console.log(data);
                 if (data['status'] == 0) {
                     layer.msg('删除成功!', {icon: 6});

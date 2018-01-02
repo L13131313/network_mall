@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin\user;
 
-//后台用户
 use App\Model\admin\user\User;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

@@ -44,12 +44,6 @@ class IndexController extends Controller
         return view('index/user/bindphone');
     }
 
-    // 用户修改Email
-    public function email()
-    {
-        return view('index/user/email');
-    }
-
     // 用户安全设置页面
     public function safety()
     {
@@ -68,30 +62,6 @@ class IndexController extends Controller
         return view('index/user/order');
     }
 
-    // 用户退款页面
-    public function change()
-    {
-        return view('index/user/change');
-    }
-
-    // 用户退款详情
-    public function record()
-    {
-        return view('index/user/record');
-    }
-
-    // 用户收藏页面
-    public function collection()
-    {
-        return view('index/user/collection');
-    }
-
-    // 用户访问页面
-    public function foot()
-    {
-        return view('index/user/foot');
-    }
-
     // 用户评价页面
     public function comment()
     {
@@ -104,19 +74,13 @@ class IndexController extends Controller
         return view('index/user/commentlist');
     }
 
-    // 用户消息页面
-    public function news()
-    {
-        return view('index/user/news');
-    }
-
     // 用户物流信息
     public function logistics()
     {
         return view('index/user/logistics');
     }
 
-    // 用户物流信息
+    // 用户注册卖家信息
     public function status()
     {
         return view('index/user/status');

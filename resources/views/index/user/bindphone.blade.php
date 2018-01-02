@@ -56,7 +56,7 @@
 	function sendCode()
 	{	
 		// alert(1111111);
-		$.post("{{ url('index/sendCode') }}",{'phone':{{ session('indexUser')['tel'] }},'_token':'{{csrf_token()}}'},function(data) {
+		$.post("{{ url('index/sendCode') }}",{'phone':"{{ session('indexUser')['tel']" }},'_token':'{{csrf_token()}}'},function(data) {
 			alert(data);
 		});
 	}

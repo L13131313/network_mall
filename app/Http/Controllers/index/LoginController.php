@@ -57,12 +57,17 @@ class LoginController extends Controller
                 ->withInput();
         }
 
+
 //        4. 判断是否有此用户
         $user = User::where('tel',$input['tel'])->first();
         if(empty($user)){
             return redirect('index/login')->with('msg','账号不存在');
         }
-
+        $open = $user['open'];
+        //判断用户是否被封
+        if($open == 1) {
+            return redirect('index/login')->with('msg','账号被封，请联系管理员');
+        }
 //        5. 判断密码是否正确
         if(Crypt::decrypt($user->pwd) != $input['pwd'])
         {
@@ -73,7 +78,7 @@ class LoginController extends Controller
         session(['indexUser' => $user]);
         // dd(session('indexUser'))    ;
 //        7 登录成功 就跳转到前台首页，失败就跳转回登录页
-        return redirect('index/user');
+        return redirect('index/home');
     }
 
     public function logOut(Request $request)

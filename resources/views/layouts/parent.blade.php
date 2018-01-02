@@ -44,7 +44,7 @@
 						</ul>
 						<ul class="message-r">
 							<div class="topMessage home">
-								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+								<div class="menu-hd"><a href="{{ url('index/home') }}" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{ url('index/user') }}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
@@ -59,10 +59,8 @@
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
-							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 						</ul>
-						</div>
+					</div>
 
 						<!--悬浮搜索框-->
 
@@ -86,22 +84,18 @@
 			</article>
 		</header>
             <div class="nav-table">
-					   <div class="long-title"><span class="all-goods">全部分类</span></div>
-					   <div class="nav-cont">
-							<ul>
-								<li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
-							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
-						</div>
+			   <div class="long-title"><span class="all-goods">全部分类</span></div>
+			   <div class="nav-cont">
+					<ul>
+						<li class="index"><a href="{{ url('index/home') }}">首页</a></li>
+                        <li class="qc"><a href="{{ url('index/user') }}">个人中心</a></li>
+					</ul>
+				    <div class="nav-extra">
+				    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
+				    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+				    </div>
+				</div>
 			</div>
-
 			<b class="line"></b>
 		<div class="center">
 			<div class="col-main">
@@ -137,7 +131,7 @@
 			<aside class="menu">
 				<ul>
 					<li class="person active">
-						<a href="index.html">个人中心</a>
+						<a href="{{ url('index/user') }}">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="#">个人资料</a>
@@ -151,17 +145,14 @@
 						<a href="#">我的交易</a>
 						<ul>
 							<li><a href="{{ url('index/order') }}">订单管理</a></li>
-							<li> <a href="{{ url('index/change') }}">退款</a></li>
 						</ul>
 					</li>
 
 					<li class="person">
 						<a href="#">我的小窝</a>
 						<ul>
-							<li> <a href="{{ url('index/collection') }}">收藏</a></li>
 							<li> <a href="{{ url('index/foot') }}">足迹</a></li>
 							<li> <a href="{{ url('index/comment') }}">评价</a></li>
-							<li> <a href="{{ url('index/news') }}">消息</a></li>
 						</ul>
 					</li>
 					

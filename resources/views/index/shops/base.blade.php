@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
         {{--layer--}}
         <link href="{{ asset('layui/css/layui.css') }}" rel="stylesheet" type="text/css">
-        <script src="{{ asset('layer/jquery-1.8.3.min.js')}}"></script>
+        <script src="{{ asset('layer/jquery.js')}}"></script>
         <script src="{{ asset('layer/layer.js')}}"></script>
         <script src="{{ asset('layui/layui.js')}}"></script>
         <style>
@@ -19,8 +19,8 @@
     <body class="layui-layout-body">
 
         <div class="layui-layout layui-layout-admin">
-            <div class="layui-header">
-                <div class="layui-logo" style="font-size:20px;">卖家中心</div>
+            <div class="layui-header" style="background-color:#4A708B;">
+                <div class="layui-logo" style="font-size:20px;color:#fff;">卖家中心</div>
                 <!-- 头部区域（可配合layui已有的水平导航） -->
                 <ul class="layui-nav layui-layout-left">
                     <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -38,7 +38,7 @@
                 <ul class="layui-nav layui-layout-right">
                     <li class="layui-nav-item">
                         <a href="javascript:;">
-                            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                            <img src="" class="layui-nav-img">
                             贤心
                         </a>
                         <dl class="layui-nav-child">
@@ -50,31 +50,36 @@
                 </ul>
             </div>
 
-            <div class="layui-side layui-bg-black">
+            <div class="layui-side" style="background-color:#4A708B;">
                 <div class="layui-side-scroll">
                     <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                    <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                    <ul class="layui-nav layui-nav-tree"  lay-filter="test" style="background-color:#4A708B;">
                         <li class="layui-nav-item layui-nav-itemed">
-                            <a class="" href="javascript:;">店铺管理</a>
+                            <a class="" href="javascript:;">我的店铺</a>
                             <dl class="layui-nav-child">
-                                <dd><a href="javascript:;">店铺配置</a></dd>
-                                <dd><a href="javascript:;">修改配置</a></dd>
+                                <dd><a href="{{ url('shops/shopadmin/create') }}">进入店铺</a></dd>
                             </dl>
                         </li>
                         <li class="layui-nav-item">
-                            <a href="javascript:;">栏目管理</a>
+                            <a class="" href="javascript:;">店铺管理</a>
                             <dl class="layui-nav-child">
-                                <dd><a href="javascript:;">添加栏目</a></dd>
-                                <dd><a href="javascript:;">栏目列表</a></dd>
-                                <dd><a href="">修改栏目</a></dd>
+                                <dd><a href="{{ url('shops/shopadmin') }}">店铺信息</a></dd>
+                                <dd><a href="{{ url('shops/shopadmin/create') }}">装修店铺</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">分类管理</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="{{ url('shops/cate/create') }}">添加分类</a></dd>
+                                <dd><a href="{{ url('shops/cate') }}">分类列表</a></dd>
                             </dl>
                         </li>
                         <li class="layui-nav-item">
                             <a href="javascript:;">商品管理</a>
                             <dl class="layui-nav-child">
                                 <dd><a href="{{ url('shops/goods') }}">发布商品</a></dd>
-                                <dd><a href="javascript:;">出售中的商品</a></dd>
-                                <dd><a href="">仓库中的商品</a></dd>
+                                <dd><a href="{{ url('shops/goods/sellList') }}">出售中的商品</a></dd>
+                                <dd><a href="{{ url('shops/warehouse') }}">仓库中的商品</a></dd>
                             </dl>
                         </li>
                         <li class="layui-nav-item">
@@ -94,10 +99,6 @@
                 <div style="padding: 15px;">
                     @yield('content')
                 </div>
-            </div>
-            <div class="layui-footer">
-                <!-- 底部固定区域 -->
-                © layui.com - 底部固定区域
             </div>
         </div>
     <script></script>
